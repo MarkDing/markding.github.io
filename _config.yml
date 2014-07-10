@@ -1,0 +1,10 @@
+# GitHub Defaults
+highlighter: true
+safe: true
+
+# UTF-8 & parse errors fix
+#markdown: redcarpet
+#extensions: ["fenced_code_blocks", "no_intra_emphasis", "superscript", "strikethrough", "autolink"]
+
+kramdown:
+  input: GFM
