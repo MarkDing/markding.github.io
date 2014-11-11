@@ -1,5 +1,8 @@
-Make node-webkit works with serialport
-====
+---
+layout: post
+title: "Make node-webkit works with serialport"
+---
+
 I have met issue on making serialport works under node-webkit. There are a lot of similar issues happened. So here is the way to solve the problem. Hope that helps.
 
 # Software installation 
