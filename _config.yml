@@ -1,5 +1,5 @@
 # GitHub Defaults
-highlighter: true
+highlighter: rouge
 safe: true
 
 # UTF-8 & parse errors fix
