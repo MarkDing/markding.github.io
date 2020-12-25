@@ -12,7 +12,7 @@ EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM�
  
 下图显示了在Simplicity Studio中从Energy Profiler测试的结果。从图中，我们可以看到有两个测量结果。左侧为总平均电流，该电流值包括复位时产生的电流。用户应该读取从选择的范围计算出的平均电流。
  
-![files/CM-Reduce-Current-Consumption/soc-empty-energy-profiler.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/soc-empty-energy-profiler.png) 
+![files/CM-Reduce-Current-Consumption/soc-empty-energy-profiler.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/soc-empty-energy-profiler.png) 
 
 根据[UG172](https://www.silabs.com/documents/public/userguides/ug172-brd4320a-user-guide.pdf)“AEM精度和性能”的章节， AEM能够测量0.1 µA到95 mA范围内的电流。对于超过250 µA的电流，AEM精确在0.1 mA之内。当测量电流低于250 µA时，精度增加到1 µA。即使绝对精度是1 µA, 在低于250 µA的范围内，Energy Profiler仍然不够精确以测量低功耗，特别是在深睡眠模式。
 
@@ -35,7 +35,7 @@ EFR32xG22最突出的新特性之一就是低功耗，可以在保留32 KB RAM�
 首先，我们将做一个简单的比较，比较当供电电压为3.0 V和3.3 V时的测试结果。
 下图为“SoC Empty Project”在不同电源电压下的测试结果。上面的曲线为供电电压3.0 V时的电流消耗，下面的曲线为供电电压3.3 V时的电流消耗。从下表可以看出，供电电压为3.0 V时的电流消耗要比3.3 V时高。这是因为设备将在EM2中保持恒定的功率。由公式**P = U x I**可知，功率恒定的条件下电压与电流成反比。  
 
-![files/CM-Reduce-Current-Consumption/InputVoltage_Comparison.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/InputVoltage_Comparison.png) 
+![files/CM-Reduce-Current-Consumption/InputVoltage_Comparison.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/InputVoltage_Comparison.png) 
  
 
 ### Debugger
@@ -57,7 +57,7 @@ DC-DC降压变换器是一种开关稳压器，能有效地将高输入电压转
 
 在SoC Empty项目中，DCDC是默认启用的。下图显示了在soc empty项目中禁用Debug模式后，使用DCDC和不使用DCDC的情况下的当前电流曲线比较。从平均电流可以看出，使用DCDC可以节省大量的电流。
 
-![files/CM-Reduce-Current-Consumption/DCDC_comparison.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/DCDC_comparison.png) 
+![files/CM-Reduce-Current-Consumption/DCDC_comparison.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/DCDC_comparison.png) 
 
 
 ### 外部 flash
@@ -181,7 +181,7 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 ```
 根据EFR32xG22的数据手册，使用DC-DC 3.0V 电源供电时，MCU 在 EM2 及 VSCALE0模式下的电流消耗如下表所示：
 
-![files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png) 
+![files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/datasheet-MCU-current-consumption.png) 
  
 **Note**: 重置设备后立即进入EM2模式，可能会让debugger不能再被连接。  
 为了解决这个问题，请将电池盒旁边的WSTK开关设置为USB(关闭EFR电源)。执行简单命令命令行参数"./command .exe device recover"后，立即将开关移动到AEM位置。
@@ -245,7 +245,7 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 #### 实验结果
 实验结果显示两分钟内睡眠电流消耗情况。从底部的表中我们可以看到整体的统计数据，平均电流消耗约为1.65 µA。
  
-![files/CM-Reduce-Current-Consumption/soc-empty-disable-debug.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/soc-empty-disable-debug.png) 
+![files/CM-Reduce-Current-Consumption/soc-empty-disable-debug.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/soc-empty-disable-debug.png) 
 
 因为我们是在一个无线BLE项目(SoC Empty Project)中进行测试，所以即使在EM2中也应该保留Radio RAM (FRC和SEQ)，它消耗了大约0.25 µA的额外供电电流。因此，测试结果将会高于1.4 µA。在不需要无线功能的情况下，xG22在MCU项目中可以达到低于1.4 µA的电流消耗。
 
@@ -265,7 +265,7 @@ CMU_ClockSelectSet(cmuClock_LFXO, cmuSelect_LFXO);
 #### 实验结果
 从MCU项目的测试结果可以看出，MCU项目可以达到低于1.4 µA的电流消耗。
 
-![files/CM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png](https://markding.github.io/doc4zhihu/data/fileCM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png) 
+![files/CM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png](https://markding.github.io/doc4zhihu/data/files/CM-Reduce-Current-Consumption/mcu-noradioram-32ram-v0.png) 
 
 
 ## 总结

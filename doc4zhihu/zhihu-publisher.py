@@ -65,7 +65,7 @@ def rename_image_ref(m, original=True):
     global image_folder_path
     # print(m.group(1))
     if original == True:
-        image_path = re.sub("./","",os.path.dirname (m.group(2) ))
+        image_path = re.sub("\./","",os.path.dirname (m.group(2) ))
         image_ref_name = Path(m.group(2)).name
         return "!["+m.group(2)+"]("+GITHUB_REPO_PREFIX+str(image_path)+"/"+image_ref_name+")"
     else:
